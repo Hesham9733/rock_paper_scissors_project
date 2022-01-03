@@ -68,9 +68,9 @@ scissorsBtn.addEventListener('click', () => {
     playRound(playerChoice(choices,2), aiChoice(choices));
     if(aiScore.textContent === 'xxxxx'){
         gameGround.textContent = '';
-        finalResult.textContent = 'You Lost ! The AI Win';
+        finalResult.textContent = 'You Lost ! The AI Win .';
     } else if(playerScore.textContent === 'xxxxx'){
         gameGround.textContent = '';
-        finalResult.textContent = 'Congratulations ! You Win';
+        finalResult.textContent = 'Congratulations ! You Win .';
     }
 });
