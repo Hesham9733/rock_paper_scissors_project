@@ -10,9 +10,7 @@ const aiCount = document.querySelector('.aiCount');
 const aiScore = document.querySelector('.aiScore');
 aiCount.textContent = `The AI Score : `;
 const finalResult = document.querySelector('.resultGame');
-const playAgainBtn = document.createElement('button');
-playAgainBtn.textContent = 'play again';
-body.appendChild(playAgainBtn);
+const playAgainBtn = document.querySelector('.play_again');
 const choices = ['rock', 'paper', 'scissors'];
 function playerChoice(array, index) {
     const pchoice = array[index];
