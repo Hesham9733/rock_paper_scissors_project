@@ -1,3 +1,4 @@
+const body = document.querySelector('body');
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
@@ -9,6 +10,9 @@ const aiCount = document.querySelector('.aiCount');
 const aiScore = document.querySelector('.aiScore');
 aiCount.textContent = `The AI Score : `;
 const finalResult = document.querySelector('.resultGame');
+const playAgainBtn = document.createElement('button');
+playAgainBtn.textContent = 'play again';
+body.appendChild(playAgainBtn);
 const choices = ['rock', 'paper', 'scissors'];
 function playerChoice(array, index) {
     const pchoice = array[index];
@@ -21,6 +25,16 @@ function aiChoice(array) {
 }
 function playRound(player, ai) {
     if (aiScore.textContent.length > 4 || playerScore.textContent.length > 4) {
+        if (finalResult.textContent.length !== 0) { 
+            playAgainBtn.addEventListener('click', () => {
+                playerCount.textContent = `The Player Score : `;
+                aiCount.textContent = `The AI Score : `;
+                gameGround.textContent = '...';
+                aiScore.textContent = '';
+                playerScore.textContent = '';
+                finalResult.textContent = '';
+            });
+        }
         alert(finalResult.textContent);
     } else {
         if (player === ai) {
@@ -46,47 +60,21 @@ function playRound(player, ai) {
         }
     }
 }
+function playGame(index) {
+    playRound(playerChoice(choices, index), aiChoice(choices));
+    if (aiScore.textContent.length == 5) {
+        gameGround.textContent = '';
+        playerCount.textContent = '';
+        aiCount.textContent = '';
+        finalResult.textContent = 'You Lost ! The AI Win .';
+    } else if (playerScore.textContent.length == 5) {
+        gameGround.textContent = '';
+        playerCount.textContent = '';
+        aiCount.textContent = '';
+        finalResult.textContent = 'Congratulations ! You Win .';
+    }
+}
+rockBtn.addEventListener('click', () => { playGame(0) });
+paperBtn.addEventListener('click', () => { playGame(1) });
+scissorsBtn.addEventListener('click', () => { playGame(2) });
 
-rockBtn.addEventListener('click', () => {
-    playRound(playerChoice(choices, 0), aiChoice(choices));
-    if (aiScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'You Lost ! The AI Win .';
-    } else if (playerScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'Congratulations ! You Win .';
-    }
-});
-paperBtn.addEventListener('click', () => {
-    playRound(playerChoice(choices, 1), aiChoice(choices));
-    if (aiScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'You Lost ! The AI Win .';
-
-    } else if (playerScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'Congratulations ! You Win .';
-    }
-});
-scissorsBtn.addEventListener('click', () => {
-    playRound(playerChoice(choices, 2), aiChoice(choices));
-    if (aiScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'You Lost ! The AI Win .';
-    } else if (playerScore.textContent.length == 5) {
-        gameGround.textContent = '';
-        playerCount.textContent = '';
-        aiCount.textContent = '';
-        finalResult.textContent = 'Congratulations ! You Win .';
-    }
-});
